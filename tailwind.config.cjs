@@ -17,11 +17,11 @@ const config = {
 						display: ['PT Mono, monospace'],
 						body: ['Inter, sans-serif']
 					},
-					primary: '#2a2a2a' /* Primary color */,
-					'primary-focus': '#9945FF' /* Primary color - focused */,
+					primary: '#184623' /* Primary color */,
+					'primary-focus': '#4A8F5D' /* Primary color - focused */,
 					'primary-content': '#ffffff' /* Foreground content color to use on primary color */,
 
-					secondary: '#f6d860' /* Secondary color */,
+					secondary: '#FFC919' /* Secondary color */,
 					'secondary-focus': '#f3cc30' /* Secondary color - focused */,
 					'secondary-content': '#ffffff' /* Foreground content color to use on secondary color */,
 
