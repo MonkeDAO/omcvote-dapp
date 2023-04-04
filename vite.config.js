@@ -12,28 +12,37 @@ const config = {
 		'process.env.NODE_DEBUG': JSON.stringify(''),
 		'process.env.VERSION': JSON.stringify(process.env.npm_package_version)
 	},
-	optimizeDeps: {
-		include: ['@solana/web3.js', 'buffer'],
-		esbuildOptions: {
-				target: 'esnext',
-				plugins: [NodeGlobalsPolyfillPlugin({ buffer: true })],
-		},
-	},
+
+    optimizeDeps: {
+        esbuildOptions: {
+            target: "es2020",
+        },
+    },
+	build: {
+        target: "es2020",
+    },
+	// optimizeDeps: {
+	// 	include: ['@solana/web3.js', 'buffer'],
+	// 	esbuildOptions: {
+	// 			target: 'esnext',
+	// 			plugins: [NodeGlobalsPolyfillPlugin({ buffer: true })],
+	// 	},
+	// },
 	resolve: {
 		alias: {
 			$stores: path.resolve('./src/stores'),
-			stream: 'rollup-plugin-node-polyfills/polyfills/stream',
+			//stream: 'rollup-plugin-node-polyfills/polyfills/stream',
 		}
 	},
-	build: {
-		target: 'esnext',
-		commonjsOptions: {
-			transformMixedEsModules: true
-		},
-		rollupOptions: {
-			plugins: [inject({ Buffer: ['buffer', 'Buffer'] }), nodePolyfills({ crypto: true })],
-		},
-	},
+	// build: {
+	// 	target: 'esnext',
+	// 	commonjsOptions: {
+	// 		transformMixedEsModules: true
+	// 	},
+	// 	rollupOptions: {
+	// 		plugins: [inject({ Buffer: ['buffer', 'Buffer'] }), nodePolyfills({ crypto: true })],
+	// 	},
+	// },
 	server: {
 		host: true
 	}
