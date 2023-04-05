@@ -14,10 +14,12 @@
 	import { browser } from '$app/environment';
 	import {
 		PhantomWalletAdapter,
+		GlowWalletAdapter,
+		BackpackWalletAdapter,
 		SolflareWalletAdapter,
 		SolletExtensionWalletAdapter,
 		SolletWalletAdapter,
-		TorusWalletAdapter
+		TorusWalletAdapter,
 	} from '@solana/wallet-adapter-wallets';
 	import '../app.css';
 
@@ -27,6 +29,8 @@
 
 	let wallets: Adapter[] = [
 		new PhantomWalletAdapter(),
+		new GlowWalletAdapter(),
+		new BackpackWalletAdapter(),
 		new SolflareWalletAdapter(),
 		new SolletWalletAdapter({ network: endpoint }),
 		new SolletExtensionWalletAdapter({ network: endpoint }),

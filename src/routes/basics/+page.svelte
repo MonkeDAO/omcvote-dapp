@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SignMessage, SendTransaction } from '$lib/index';
+	import { SignMessage, SendTransaction, RequestAirdrop } from '$lib/index';
 </script>
 
 <div class="md:hero mx-auto p-4">
@@ -12,6 +12,7 @@
 		<div class="text-center">
 			<SignMessage />
 			<SendTransaction />
+			<RequestAirdrop	/>
 		</div>
 	</div>
 </div>
