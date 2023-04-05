@@ -15,20 +15,30 @@
 		}
 
 		let signature: TransactionSignature = '';
-		const { connection } = $workSpace;
+		const { connection,  } = $workSpace;
 
 		try {
+			const to = Keypair.generate()
+			console.log('sending transaction...', to.publicKey.toBase58())
 			const transaction = new Transaction().add(
 				SystemProgram.transfer({
 					fromPubkey: publicKey,
-					toPubkey: Keypair.generate().publicKey,
-					lamports: 1
+					toPubkey: publicKey,
+					lamports: 1,
 				})
 			);
+			signature = await sendTransaction(transaction, connection, {
+				skipPreflight: true,
 
-			signature = await sendTransaction(transaction, connection);
-
-			await connection.confirmTransaction(signature, 'confirmed');
+			});
+			const response = await connection.getLatestBlockhashAndContext();
+			//const response = await connection.getLatestBlockhashAndContext();
+			console.log('response', response, signature)
+			await connection.confirmTransaction({
+				signature,
+				blockhash: response.value.blockhash,
+				lastValidBlockHeight: response.value.lastValidBlockHeight
+			}, 'confirmed');
 			console.log('confirmed: ');
 
 			notificationStore.add({

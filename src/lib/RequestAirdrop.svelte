@@ -22,7 +22,12 @@
 
 		try {
 			signature = await connection.requestAirdrop(publicKey, LAMPORTS_PER_SOL);
-			await connection.confirmTransaction(signature, 'confirmed');
+			const response = await connection.getLatestBlockhash();
+			await connection.confirmTransaction({
+				signature,
+				blockhash: response.blockhash,
+				lastValidBlockHeight: response.lastValidBlockHeight
+			}, 'confirmed');
 			notificationStore.add({ type: 'success', message: 'Airdrop successful!', txid: signature });
 			balanceStore.getUserSOLBalance(publicKey, connection);
 		} catch (error: any) {
